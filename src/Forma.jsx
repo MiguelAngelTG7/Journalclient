@@ -1,6 +1,5 @@
-import React, { Component } from "react";
- 
-import { Button, Form } from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
 class Forma extends Component {
   constructor(props) {
@@ -11,12 +10,11 @@ class Forma extends Component {
       body: "",
     };
 
-    this.state = this.initialState;
+    this.state = props.entry ? props.entry : this.initialState;
   }
 
   handleChange = (event) => {
     const { name, value } = event.target;
-
     this.setState({
       [name]: value,
     });
@@ -32,7 +30,7 @@ class Forma extends Component {
 
     return (
       <Form>
-        <Form.Group className="mb-3" >
+        <Form.Group className="mb-3">
           <Form.Label>Title</Form.Label>
           <Form.Control
             placeholder="Enter title"
@@ -41,21 +39,24 @@ class Forma extends Component {
             id="title"
             value={title}
             onChange={this.handleChange}
-            />
+          />
         </Form.Group>
-        <Form.Group className="mb-3" >
+        <Form.Group className="mb-3">
           <Form.Label>Entry</Form.Label>
           <Form.Control
             placeholder="What's up?"
-            as="textarea" rows={3}
+            as="textarea"
+            rows={3}
             name="body"
             id="body"
             value={body}
             onChange={this.handleChange}
-            />
+          />
         </Form.Group>
-        <Button variant="danger" onClick={this.submitForm}>Submit</Button>
-      </Form> 
+        <Button variant="danger" onClick={this.submitForm}>
+          {this.props.entry ? 'Update' : 'Submit'}
+        </Button>
+      </Form>
     );
   }
 }

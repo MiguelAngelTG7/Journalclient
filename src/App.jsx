@@ -6,20 +6,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   state = {
-    entries: [], // Inicializamos el estado con un array vacío
+    entries: [], // Entradas del diario
+    editingIndex: null, // Guardará el índice de la entrada que se está editando
+    editingEntry: null, // Guardará la entrada que se está editando
   };
 
   // Método para eliminar una entrada
   removeEntry = (index) => {
     const { entries } = this.state;
-    const entryToDelete = entries[index];
 
-    // Hacer la solicitud DELETE al backend
     axios
       .delete(`http://127.0.0.1:5000/posteos/${index}`)
       .then((response) => {
         console.log('Entrada eliminada:', response.data.message);
-        // Actualizamos el estado después de eliminar la entrada
         this.setState({
           entries: entries.filter((entry, i) => i !== index),
         });
@@ -31,12 +30,10 @@ class App extends Component {
 
   // Método para agregar una entrada
   handleSubmit = (entry) => {
-    // Hacer la solicitud POST al backend
     axios
       .post('http://127.0.0.1:5000/posteos', entry)
       .then((response) => {
         console.log('Entrada creada:', response.data.message);
-        // Actualizamos el estado con la nueva entrada
         this.setState({ entries: [...this.state.entries, entry] });
       })
       .catch((error) => {
@@ -44,28 +41,70 @@ class App extends Component {
       });
   };
 
+  // Método para editar una entrada
+  handleEdit = (index) => {
+    const entryToEdit = this.state.entries[index];
+    this.setState({
+      editingIndex: index, // Guardamos el índice de la entrada que estamos editando
+      editingEntry: entryToEdit, // Guardamos la entrada que estamos editando
+    });
+  };
+
+  // Método para actualizar una entrada existente (PUT)
+  handleUpdate = (updatedEntry) => {
+    const { editingIndex, entries } = this.state;
+
+    axios
+      .put(`http://127.0.0.1:5000/posteos/${editingIndex}`, updatedEntry)
+      .then((response) => {
+        console.log('Entrada actualizada:', response.data.message);
+        const updatedEntries = entries.map((entry, index) =>
+          index === editingIndex ? updatedEntry : entry
+        );
+        this.setState({
+          entries: updatedEntries, // Actualizamos el estado con la entrada modificada
+          editingIndex: null, // Limpiamos el índice de edición
+          editingEntry: null, // Limpiamos la entrada de edición
+        });
+      })
+      .catch((error) => {
+        console.error('Error actualizando la entrada:', error);
+      });
+  };
+
   // Hacer la solicitud GET a la API cuando el componente se monta utilizando axios
   componentDidMount() {
     axios
-      .get('http://127.0.0.1:5000/posteos') // URL de tu API en Flask
+      .get('http://127.0.0.1:5000/posteos')
       .then((response) => {
-        // Actualizamos el estado con los datos de la respuesta
         this.setState({ entries: response.data.content });
       })
       .catch((error) => {
-        console.error('Error fetching data:', error); // Manejo de errores
+        console.error('Error fetching data:', error);
       });
   }
 
   // Renderizar el componente
   render() {
-    const { entries } = this.state;
+    const { entries, editingIndex, editingEntry } = this.state;
 
     return (
       <div className="App container">
         <h1 style={{ paddingBottom: '30px', paddingTop: '10px' }}>My Journal App</h1>
-        <Forma handleSubmit={this.handleSubmit} />
-        <Entries entryData={entries} removeEntry={this.removeEntry} />
+        
+        {/* Mostramos el formulario para agregar o editar */}
+        {editingIndex === null ? (
+          <Forma handleSubmit={this.handleSubmit} />
+        ) : (
+          <Forma handleSubmit={this.handleUpdate} entry={editingEntry} />
+        )}
+
+        {/* Mostramos las entradas */}
+        <Entries
+          entryData={entries}
+          removeEntry={this.removeEntry}
+          editEntry={this.handleEdit}
+        />
       </div>
     );
   }
