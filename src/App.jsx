@@ -89,22 +89,40 @@ class App extends Component {
     const { entries, editingIndex, editingEntry } = this.state;
 
     return (
-      <div className="App container">
-        <h1 style={{ paddingBottom: '30px', paddingTop: '10px' }}>My Journal App</h1>
-        
-        {/* Mostramos el formulario para agregar o editar */}
-        {editingIndex === null ? (
-          <Forma handleSubmit={this.handleSubmit} />
-        ) : (
-          <Forma handleSubmit={this.handleUpdate} entry={editingEntry} />
-        )}
 
-        {/* Mostramos las entradas */}
-        <Entries
-          entryData={entries}
-          removeEntry={this.removeEntry}
-          editEntry={this.handleEdit}
-        />
+      <div>
+        <h1 class="text-info text-center fw-bold " style={{ paddingBottom: '40px', paddingTop: '40px' }}>My Journal App</h1>
+        <div class="container text-center, border border-3 rounded" style={{padding: '50px'}}>
+          <div class="row">
+            <div class="col">
+              
+            <h2 class="fw-bold">Today</h2>          
+            {/* Mostramos el formulario para agregar o editar */}
+            {editingIndex === null ? (
+              <Forma handleSubmit={this.handleSubmit} />
+            ) : (
+              <Forma handleSubmit={this.handleUpdate} entry={editingEntry} />
+            )}
+
+            </div>
+            
+            <div class="col-1">
+            
+            </div>
+
+            <div class="col-7">
+              
+              {/* Mostramos las entradas */}
+              <Entries
+                entryData={entries}
+                removeEntry={this.removeEntry}
+                editEntry={this.handleEdit}
+              />
+
+            </div>
+            
+          </div>
+        </div>
       </div>
     );
   }
