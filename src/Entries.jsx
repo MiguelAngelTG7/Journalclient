@@ -8,7 +8,7 @@ const EntryBody = (props) => {
         <Row style={{ padding: '10px'}}>
           <Col>
             <h2>{line.title}</h2>
-            <small>{Date()}</small>
+            <mark class="text-danger">{Date()}</mark>
             <p>{line.body}</p>
             <Button
               variant="primary"
@@ -38,7 +38,7 @@ const Entries = (props) => {
 
   return (
     <div >
-      <h2 class="fw-bold text-center" >My Entries</h2>
+      <h2 class="fw-bold text-center text-white" >My Entries</h2>
       <div class="text-start" style={{ paddingBottom: '20px', paddingTop: '20px' }}>
         <EntryBody entryData={entryData} removeEntry={removeEntry} editEntry={editEntry} />
       </div>

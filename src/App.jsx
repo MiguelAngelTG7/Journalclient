@@ -94,20 +94,20 @@ class App extends Component {
         <div
           className="bg-image"
           style={{
-            backgroundImage: "url('https://plus.unsplash.com/premium_photo-1675747432631-ddaf39bd4498?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c29saWQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww')",
+            backgroundImage: "url('https://img.freepik.com/foto-gratis/hoja-naturaleza-fondos-patron-ilustracion-planta-telon-fondo-diseno-abstracto-naturaleza-verde-vibrante-papel-tapiz-ilustracion-generativa-ai_188544-12680.jpg?w=740&t=st=1727366151~exp=1727366751~hmac=dc7dd464ba9253f2d31d7eaabc7761101e07db050a55677ee76db60516e28455')",
             backgroundRepeat: "repeat", // Repetir solo verticalmente
             //backgroundSize: "cover",      // Asegura que la imagen se ajuste bien en cada repetición
             minHeight: "100vh"            // Permite que el contenido ocupe el mínimo del 100% de la vista
           }}
         >
           {/* Contenido de la app */}
-          <h1 className="text-white text-center fw-bold" style={{ paddingBottom: '40px', paddingTop: '40px' }}>
+          <h1 className="display-5 text-white text-center fw-bold text-uppercase" style={{ paddingBottom: '40px', paddingTop: '40px' }}>
             My Journal App
           </h1>
           <div className="container text-center border border-3 rounded" style={{ padding: '50px' }}>
             <div className="row">
               <div className="col">
-                <h2 className="fw-bold">Today</h2>
+                <h2 className="text-white fw-bold">Today</h2>
                 {/* Mostramos el formulario para agregar o editar */}
                 {editingIndex === null ? (
                   <Forma handleSubmit={this.handleSubmit} />
