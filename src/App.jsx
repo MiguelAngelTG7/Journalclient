@@ -89,38 +89,42 @@ class App extends Component {
     const { entries, editingIndex, editingEntry } = this.state;
 
     return (
-
       <div>
-        <h1 class="text-info text-center fw-bold " style={{ paddingBottom: '40px', paddingTop: '40px' }}>My Journal App</h1>
-        <div class="container text-center, border border-3 rounded" style={{padding: '50px'}}>
-          <div class="row">
-            <div class="col">
-              
-            <h2 class="fw-bold">Today</h2>          
-            {/* Mostramos el formulario para agregar o editar */}
-            {editingIndex === null ? (
-              <Forma handleSubmit={this.handleSubmit} />
-            ) : (
-              <Forma handleSubmit={this.handleUpdate} entry={editingEntry} />
-            )}
-
+        {/* Div con la imagen de fondo que se repite verticalmente */}
+        <div
+          className="bg-image"
+          style={{
+            backgroundImage: "url('https://plus.unsplash.com/premium_photo-1675747432631-ddaf39bd4498?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c29saWQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww')",
+            backgroundRepeat: "repeat", // Repetir solo verticalmente
+            //backgroundSize: "cover",      // Asegura que la imagen se ajuste bien en cada repetición
+            minHeight: "100vh"            // Permite que el contenido ocupe el mínimo del 100% de la vista
+          }}
+        >
+          {/* Contenido de la app */}
+          <h1 className="text-white text-center fw-bold" style={{ paddingBottom: '40px', paddingTop: '40px' }}>
+            My Journal App
+          </h1>
+          <div className="container text-center border border-3 rounded" style={{ padding: '50px' }}>
+            <div className="row">
+              <div className="col">
+                <h2 className="fw-bold">Today</h2>
+                {/* Mostramos el formulario para agregar o editar */}
+                {editingIndex === null ? (
+                  <Forma handleSubmit={this.handleSubmit} />
+                ) : (
+                  <Forma handleSubmit={this.handleUpdate} entry={editingEntry} />
+                )}
+              </div>
+              <div className="col-1"></div>
+              <div className="col-7">
+                {/* Mostramos las entradas */}
+                <Entries
+                  entryData={entries}
+                  removeEntry={this.removeEntry}
+                  editEntry={this.handleEdit}
+                />
+              </div>
             </div>
-            
-            <div class="col-1">
-            
-            </div>
-
-            <div class="col-7">
-              
-              {/* Mostramos las entradas */}
-              <Entries
-                entryData={entries}
-                removeEntry={this.removeEntry}
-                editEntry={this.handleEdit}
-              />
-
-            </div>
-            
           </div>
         </div>
       </div>

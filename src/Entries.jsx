@@ -39,7 +39,7 @@ const Entries = (props) => {
   return (
     <div >
       <h2 class="fw-bold text-center" >My Entries</h2>
-      <div style={{ paddingBottom: '20px', paddingTop: '20px' }}>
+      <div class="text-start" style={{ paddingBottom: '20px', paddingTop: '20px' }}>
         <EntryBody entryData={entryData} removeEntry={removeEntry} editEntry={editEntry} />
       </div>
     </div>
