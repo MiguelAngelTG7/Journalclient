@@ -11,24 +11,7 @@ class App extends Component {
     editingEntry: null, // Guardará la entrada que se está editando
   };
 
-  // Método para eliminar una entrada
-  removeEntry = (index) => {
-    const { entries } = this.state;
-
-    axios
-      .delete(`http://127.0.0.1:5000/posteos/${index}`)
-      .then((response) => {
-        console.log('Entrada eliminada:', response.data.message);
-        this.setState({
-          entries: entries.filter((entry, i) => i !== index),
-        });
-      })
-      .catch((error) => {
-        console.error('Error eliminando la entrada:', error);
-      });
-  };
-
-  // Método para agregar una entrada
+    // Método para agregar una entrada
   handleSubmit = (entry) => {
     axios
       .post('http://127.0.0.1:5000/posteos', entry)
@@ -69,6 +52,23 @@ class App extends Component {
       })
       .catch((error) => {
         console.error('Error actualizando la entrada:', error);
+      });
+  };
+
+  // Método para eliminar una entrada
+  removeEntry = (index) => {
+    const { entries } = this.state;
+
+    axios
+      .delete(`http://127.0.0.1:5000/posteos/${index}`)
+      .then((response) => {
+        console.log('Entrada eliminada:', response.data.message);
+        this.setState({
+          entries: entries.filter((entry, i) => i !== index),
+        });
+      })
+      .catch((error) => {
+        console.error('Error eliminando la entrada:', error);
       });
   };
 
