@@ -33,11 +33,11 @@ const App = () => {
   // Método para actualizar una entrada existente (PUT)
   const handleUpdate = (updatedEntry) => {
     axios
-      .put(`http://127.0.0.1:5000/posteos/${editingIndex}`, updatedEntry)
+      .put(`http://127.0.0.1:5000/posteos/${editingEntry.id}`, updatedEntry) // Cambia editingIndex por editingEntry.id
       .then((response) => {
         console.log('Entrada actualizada:', response.data.message);
-        const updatedEntries = entries.map((entry, index) =>
-          index === editingIndex ? updatedEntry : entry
+        const updatedEntries = entries.map((entry) =>
+          entry.id === editingEntry.id ? { ...entry, ...updatedEntry } : entry
         );
         setEntries(updatedEntries);  // Actualizamos el estado con la entrada modificada
         setEditingIndex(null);  // Limpiamos el índice de edición

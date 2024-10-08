@@ -17,10 +17,13 @@ const Forma = ({ handleSubmit, entry }) => {
   };
 
   const submitForm = () => {
-    handleSubmit(formState);
+    if (entry) {
+      handleSubmit({ ...formState, id: entry.id }); // Agregar el ID a la entrada actualizada
+    } else {
+      handleSubmit(formState);
+    }
     setFormState(initialState);
   };
-
   return (
     <Form>
       <Form.Group className="mb-3">
