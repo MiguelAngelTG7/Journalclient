@@ -7,7 +7,8 @@ const EntryBody = ({ entryData, removeEntry, editEntry }) => {
       <Row style={{ padding: '10px'}}>
         <Col>
           <h2>{line.title}</h2>
-          <mark className="text-danger">{Date()}</mark>
+          <small>Fecha Aqui</small>
+          {/*<mark className="text-danger">{Date()}</mark>*/}
           <p>{line.body}</p>
           <Button variant="primary" className="shadow" onClick={() => editEntry(index)}>Edit</Button>{' '}
           <Button variant="danger" className="shadow" onClick={() => removeEntry(index)}>Delete</Button>

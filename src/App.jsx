@@ -80,7 +80,7 @@ const App = () => {
       <div
         className="bg-image"
         style={{
-          backgroundImage: "url('https://img.freepik.com/foto-gratis/hoja-naturaleza-fondos-patron-ilustracion-planta-telon-fondo-diseno-abstracto-naturaleza-verde-vibrante-papel-tapiz-ilustracion-generativa-ai_188544-12680.jpg?w=740&t=st=1727366151~exp=1727366751~hmac=dc7dd464ba9253f2d31d7eaabc7761101e07db050a55677ee76db60516e28455')",
+          backgroundImage: "url('https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_640.jpg')",
           backgroundRepeat: "repeat", 
           minHeight: "100vh"
         }}
