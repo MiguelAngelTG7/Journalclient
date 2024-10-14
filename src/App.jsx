@@ -80,7 +80,7 @@ const App = () => {
       <div
         className="bg-image"
         style={{
-          backgroundImage: "url('https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_640.jpg')",
+          backgroundImage: "url('https://img.freepik.com/free-photo/solid-navy-blue-concrete-textured-wall_53876-124584.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1728864000&semt=ais_hybrid-rr-similar')",
           backgroundRepeat: "repeat", 
           minHeight: "100vh"
         }}

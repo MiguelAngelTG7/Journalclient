@@ -12,9 +12,9 @@ const EntryBody = ({ entryData, removeEntry, editEntry }) => {
     <Container key={index} className="shadow p-3 mb-5 bg-white rounded">
       <Row style={{ padding: '10px'}}>
         <Col>
-          <h2>{line.title}</h2>
-          <mark>Creado: {formatDateTime(line.created_at)}</mark><br/>
-          <mark>Actualizado: {formatDateTime(line.updated_at)}</mark>
+          <h2 class="text-uppercase">{line.title}</h2>
+          <small class="text-primary">Creado: {formatDateTime(line.created_at)}</small><br/>
+          <small class="text-primary">Actualizado: {formatDateTime(line.updated_at)}</small>
           <p>{line.body}</p>
           <Button variant="primary" className="shadow" onClick={() => editEntry(index)}>Edit</Button>{' '}
           <Button variant="danger" className="shadow" onClick={() => removeEntry(index)}>Delete</Button>
