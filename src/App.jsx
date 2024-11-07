@@ -121,6 +121,7 @@ const App = () => {
       ) : (
         <div className="login-container text-center" style={{ minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#f5f5f5" }}>
           <form onSubmit={handleLogin} style={{ width: "300px", padding: "20px", background: "white", borderRadius: "5px", boxShadow: "0 4px 8px rgba(0,0,0,0.2)" }}>
+            <h2 className="mb-8 text-danger text-center fw-bold text-uppercase">Journal App</h2>
             <h2 className="mb-4">Iniciar Sesión</h2>
             <div className="mb-3">
               <input type="email" className="form-control" placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} required />
